@@ -22,7 +22,7 @@ class SongsController < ApplicationController
 
   # POST /songs or /songs.json
   def create
-    @song = Song.new(song_params)
+    @song = current_artist.songs.new(song_params)
 
     respond_to do |format|
       if @song.save
