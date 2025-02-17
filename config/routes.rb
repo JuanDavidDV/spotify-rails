@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   devise_for :artists
-  root "home#index"
-
   resource :dashboard, to: "artists#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,10 +7,10 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  authenticated :artist do  # If artist sign in will go to dashboard by default
+    root "artists#dashboard", as: :authenticated_artist_root
+  end
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#index"
 end
