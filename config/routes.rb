@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :songs
   devise_for :artists
   resource :dashboard, to: "artists#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
