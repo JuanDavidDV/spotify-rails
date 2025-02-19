@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resource :dashboard, to: "artists#dashboard"
   end
 
+  resource :music, only: [ :show ], controller: :music # names controller to music
+
   # Defines the root path route ("/")
   root "home#index"
 end
