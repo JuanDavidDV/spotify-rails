@@ -3,7 +3,9 @@
   <p class="pt-5 font-bold text-yellow-700 text-xl">Where music sounds better!</p>
   
   <div class="pt-10 flex justify-center">
-    <%= image_tag "play-button.png", class:"w-20 object-cover hover:bg-sky-500 rounded-full overflow-hidden cursor-pointer" %>
+    <%= link_to music_path do %>
+      <%= image_tag "play-button.png", class:"w-20 object-cover hover:bg-sky-500 rounded-full overflow-hidden cursor-pointer" %>  
+    <% end %>
   </div>
 
   <div class="grid grid-cols-3 gap-8 mt-10 mb-5 max-w-5xl w-full mx-auto ">

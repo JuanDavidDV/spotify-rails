@@ -1,1 +1,9 @@
-<h1 class="text-5xl">Let's listen some cool music</h1>
+<div class="min-h-screen w-full bg-gray-600">
+  <div class="max-w-5xl w-full mx-auto p-8 grid grid-cols-4 gap-8">
+    <% @songs.each do |song| %>
+      <div class="w-full h-40" >
+        <%= image_tag(song.image, class: "h-full w-full object-cover") %>
+      </div>
+    <% end %>
+  </div>
+</div>
