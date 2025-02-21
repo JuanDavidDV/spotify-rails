@@ -6,13 +6,23 @@ export default class extends Controller {
   static values = { url: String };
 
   connect() {
-    const audio = new Audio();
-    audio.src = this.urlValue;
+    if (!window.audio) {
+      window.audio = new Audio();
+    }
   }
 
   toggle(e) {
+    if (window.audio.src != this.urlValue) {
+      window.audio.pause();
+      window.audio.currentTime = 0;
+      window.audio.src = this.urlValue; // Sets audio to clicked audio
+    }
     e.preventDefault(); // Prevents reload
     this.iconTargets.forEach(target => target.classList.toggle("hidden"));
-    audio.play();
+    if (!this.audio.paused) {
+      this.audio.pause();
+    } else {
+      this.audio.play();
+    }
   }
 }
