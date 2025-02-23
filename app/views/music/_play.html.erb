@@ -1,4 +1,5 @@
 <div data-controller="music" data-music-url-value="<%= rails_blob_url(song.audio_file) %>" 
+  data-music-audio-player-url-value="<%= audio_player_music_path(song_id: song.id) %>"
   data-action="audio-player-switched@window->music#audioSwitched">
   <%= link_to "", data: { action: "music#toggle" } do %> <!-- Refers to stimulus music controller, to the action play !-->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-15 fill-green-400 opacity-60 stroke-black hover:fill-green-200 hover:opacity-100" data-music-target="play" alt="play-bottom">
