@@ -14,6 +14,7 @@ export default class extends Controller {
   toggle(e) {
     e.preventDefault(); // Prevents reload
     if (window.audio.src != this.urlValue) {
+      // Switching song and initializing new song
       window.audio.pause();
       window.audio.currentTime = 0;
       window.audio.src = this.urlValue; // Sets audio to clicked audio

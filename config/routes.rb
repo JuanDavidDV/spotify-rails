@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   authenticated :artist do  # If artist sign in will go to dashboard by default
-    root "artists#dashboard", as: :authenticated_artist_root 
+    root "artists#dashboard", as: :authenticated_artist_root
     resources :songs
     resource :dashboard, to: "artists#dashboard"
   end
 
-  resource :music, only: [ :show ], controller: :music # names controller to music
-
+  resource :music, only: [ :show ], controller: :music do # names controller to music
+    post "audio-player", to: "music#audio_player", on: :collection  # Does not pass id to this route
+  end
   # Defines the root path route ("/")
   root "home#index"
 end
