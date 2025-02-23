@@ -39,7 +39,9 @@ export default class extends Controller {
   }
 
   async updateAudioPlayer() {
-    await post(this.audioPlayerUrlValue);
+    await post(this.audioPlayerUrlValue, {
+      responseKind: "turbo-stream"
+    });
   }
 
   audioSwitched(e) {
