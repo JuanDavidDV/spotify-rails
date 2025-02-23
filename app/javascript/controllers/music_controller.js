@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="music"
 export default class extends Controller {
-  static targets = ["icon"];
+  static targets = ["play", "pause"];
   static values = { url: String };
 
   connect() {
@@ -12,17 +12,36 @@ export default class extends Controller {
   }
 
   toggle(e) {
+    e.preventDefault(); // Prevents reload
     if (window.audio.src != this.urlValue) {
       window.audio.pause();
       window.audio.currentTime = 0;
       window.audio.src = this.urlValue; // Sets audio to clicked audio
     }
-    e.preventDefault(); // Prevents reload
-    this.iconTargets.forEach(target => target.classList.toggle("hidden"));
-    if (!this.audio.paused) {
-      this.audio.pause();
+
+    window.dispatchEvent(new CustomEvent("audio-player-switched", {
+      detail: {
+        audio_src: this.urlValue,
+      },
+    }))
+
+    this.playTarget.classList.toggle("hidden");
+    this.pauseTarget.classList.toggle("hidden");
+    
+    if (!window.audio.paused) {
+      window.audio.pause();
     } else {
-      this.audio.play();
+      window.audio.play();
+    }
+  }
+
+  audioSwitched(e) {
+    const newUrl = e.detail.audio_src;
+    if (newUrl != this.urlValue) {
+      if (this.playTarget.classList.contains("hidden")) {
+        this.playTarget.classList.remove("hidden");
+        this.pauseTarget.classList.add("hidden");
+      }
     }
   }
 }
