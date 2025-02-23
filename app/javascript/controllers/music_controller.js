@@ -19,7 +19,7 @@ export default class extends Controller {
       window.audio.pause();
       window.audio.currentTime = 0;
       window.audio.src = this.urlValue; // Sets audio to clicked audio
-        
+      this.updateAudioPlayer();
     }
 
     window.dispatchEvent(new CustomEvent("audio-player-switched", {
@@ -38,6 +38,10 @@ export default class extends Controller {
     }
   }
 
+  async updateAudioPlayer() {
+    await post(this.audioPlayerUrlValue);
+  }
+
   audioSwitched(e) {
     const newUrl = e.detail.audio_src;
     if (newUrl != this.urlValue) {
@@ -47,4 +51,4 @@ export default class extends Controller {
       }
     }
   }
-}
+};
