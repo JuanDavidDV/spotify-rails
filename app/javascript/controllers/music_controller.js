@@ -1,9 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
+import { post } from "@rails/request.js";
 
 // Connects to data-controller="music"
 export default class extends Controller {
   static targets = ["play", "pause"];
-  static values = { url: String };
+  static values = { url: String, audioPlayerUrl: String };
 
   connect() {
     if (!window.audio) {
@@ -18,6 +19,7 @@ export default class extends Controller {
       window.audio.pause();
       window.audio.currentTime = 0;
       window.audio.src = this.urlValue; // Sets audio to clicked audio
+        
     }
 
     window.dispatchEvent(new CustomEvent("audio-player-switched", {
