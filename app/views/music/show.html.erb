@@ -1,9 +1,10 @@
-<div class="min-h-screen w-full bg-gray-600">
-  <div class="max-w-5xl w-full mx-auto p-8 grid grid-cols-4 gap-8">
+<div class="min-h-screen w-full bg-green-950 pb-8">
+  <%= link_to "Home Page", root_path  %>
+  <div class="max-w-5xl w-full mx-auto p-8 grid md:grid-cols-4 gap-8">
     <% @songs.each do |song| %>
       <div class="w-full" >
         <div class="relative w-full">
-          <%= image_tag(song.image, class: "h-40 w-full object-cover rounded-lg") %>
+          <%= image_tag(song.image, class: "h-96 md:h-40 w-full object-cover rounded-lg") %>
           <div class="absolute inset-0 flex items-center justify-center">
             <%= render "play", song: song %>
           </div>
