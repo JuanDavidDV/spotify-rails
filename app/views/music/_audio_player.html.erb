@@ -1,7 +1,7 @@
 <div class="h-15 w-full bg-gray-950 flex items-center gap-4" data-controller="audio-player"> 
   <%= image_tag(song.image, class: "w-20 h-full object-cover" ) %>
   <p class="text-lg text-white"> <%= song.title %> </p>
-  <div class="flex">
+  <div class="flex text-white">
     <span data-audio-player-target="currentTime"> 0:00 </span>
     /
     <span data-audio-player-target="duration"> 0:00 </span>
