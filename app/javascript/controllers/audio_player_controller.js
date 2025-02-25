@@ -2,9 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="audio-player"
 export default class extends Controller {
-  static targets = ["currentTime", "duration", "range"];
+  static targets = ["currentTime", "duration", "range", "play", "pause"];
   connect() {
     if (!window.audio) return 
+    this.updatePlayButton();
     this.rangeTarget.value = 0;
 
     this.timeUpdateEventListener = window.audio.addEventListener("timeupdate", () => {
@@ -12,6 +13,26 @@ export default class extends Controller {
       this.durationTarget.innerHTML = formatTime(window.audio.duration);
       this.currentTimeTarget.innerHTML = formatTime(window.audio.currentTime); 
     })
+  };
+
+  toggle(e) {
+    e.preventDefault();
+    this.updatePlayButton();
+
+  }
+
+  updatePlayButton() {
+    if (window.audio.paused) {
+       if (!this.pauseTarget.classList.contains("hidden")) {
+        this.pauseTarget.classList.add("hidden");
+       }
+       this.playTarget.classList.remove("hidden");
+    } else {
+      if (!this.playTarget.classList.contains("hidden")) {
+        this.playTarget.classList.add("hidden");
+      }
+      this.pauseTarget.classList.remove("hidden");
+    }
   }
 
   // When element gets removed from the page
