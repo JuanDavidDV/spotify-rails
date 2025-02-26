@@ -10,7 +10,7 @@ export default class extends Controller {
     if (!window.audio) {
       window.audio = new Audio();
     }
-  }
+  };
 
   toggle(e) {
     e.preventDefault(); // Prevents reload
@@ -22,7 +22,7 @@ export default class extends Controller {
       this.updateAudioPlayer();
     }
 
-    window.dispatchEvent(new CustomEvent("audio-player-switched", {
+    window.dispatchEvent(new CustomEvent("audio-player-switched", { // Makes items update
       detail: {
         audio_src: this.urlValue,
       },
@@ -36,13 +36,13 @@ export default class extends Controller {
     } else {
       window.audio.play();
     }
-  }
+  };
 
   async updateAudioPlayer() {
     await post(this.audioPlayerUrlValue, {
       responseKind: "turbo-stream"
-    });
-  }
+    })
+  };
 
   audioSwitched(e) {
     const newUrl = e.detail.audio_src;

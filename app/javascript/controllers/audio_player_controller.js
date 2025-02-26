@@ -17,23 +17,34 @@ export default class extends Controller {
 
   toggle(e) {
     e.preventDefault();
-    this.updatePlayButton();
+    if(window.audio.paused) {
+      window.audio.play();
+    } else {
+      window.audio.pause();
+    }
 
-  }
+    window.dispatchEvent(new CustomEvent("audio-player-switched", {
+      detail: {
+        audio_src: this.urlValue,
+      }
+    }))
+
+    this.updatePlayButton();
+  };
 
   updatePlayButton() {
     if (window.audio.paused) {
-       if (!this.pauseTarget.classList.contains("hidden")) {
+      if (!this.pauseTarget.classList.contains("hidden")) {
         this.pauseTarget.classList.add("hidden");
-       }
-       this.playTarget.classList.remove("hidden");
+      }
+      this.playTarget.classList.remove("hidden");
     } else {
       if (!this.playTarget.classList.contains("hidden")) {
         this.playTarget.classList.add("hidden");
       }
       this.pauseTarget.classList.remove("hidden");
     }
-  }
+  };
 
   // When element gets removed from the page
   disconnect() { 
@@ -46,4 +57,4 @@ const formatTime = (currentTime) => {
   const seconds = "0" + Math.floor(currentTime - minutes * 60);
   const duration = minutes.substr(-2) + ":" + seconds.substr(-2);
   return duration;
-}
+};
