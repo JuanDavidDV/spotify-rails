@@ -9,6 +9,7 @@ export default class extends Controller {
     this.rangeTarget.value = 0;
 
     this.timeUpdateEventListener = window.audio.addEventListener("timeupdate", () => {
+      this.rangeTarget.value = window.audio.currentTime;
       this.rangeTarget.max = window.audio.duration;
       this.durationTarget.innerHTML = formatTime(window.audio.duration);
       this.currentTimeTarget.innerHTML = formatTime(window.audio.currentTime); 
