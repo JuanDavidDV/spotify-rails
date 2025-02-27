@@ -46,6 +46,10 @@ export default class extends Controller {
     }
   };
 
+  currentTimeUpdated() {
+    window.audio.currentTime = this.rangeTarget.value; 
+  };
+
   // When element gets removed from the page
   disconnect() { 
     window.audio.removeEventListener("timeupdate", this.timeUpdateEventListener);
