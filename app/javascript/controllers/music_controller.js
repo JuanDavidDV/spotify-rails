@@ -53,4 +53,21 @@ export default class extends Controller {
       }
     }
   }
+
+  audioToggled(e) {
+    const newUrl = e.detail.audio_src;
+    if (newUrl == this.urlValue) {
+      if (window.audio.paused) {
+        this.playTarget.classList.remove("hidden");
+        if (!this.pauseTarget.classList.contains("hidden")) {
+          this.pauseTarget.classList.add("hidden");
+        }
+      } else {
+        this.pauseTarget.classList.remove("hidden");
+        if (!this.playTarget.classList.contains("hidden")) {
+          this.playTarget.classList.add("hidden");
+        }
+      }
+    }
+  }
 };

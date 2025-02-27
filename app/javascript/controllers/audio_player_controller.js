@@ -17,15 +17,15 @@ export default class extends Controller {
 
   toggle(e) {
     e.preventDefault();
-    if(window.audio.paused) {
+    if (window.audio.paused) {
       window.audio.play();
     } else {
       window.audio.pause();
     }
 
-    window.dispatchEvent(new CustomEvent("audio-player-switched", {
+    window.dispatchEvent(new CustomEvent("audio-player:toggled", {
       detail: {
-        audio_src: this.urlValue,
+        audio_src: window.audio.src,
       }
     }))
 
