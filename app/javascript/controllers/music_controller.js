@@ -19,14 +19,13 @@ export default class extends Controller {
       window.audio.pause();
       window.audio.currentTime = 0;
       window.audio.src = this.urlValue; // Sets audio to clicked audio
-      this.updateAudioPlayer();
+      window.dispatchEvent(new CustomEvent("audio-player-switched", { // Makes items update
+        detail: {
+          audio_src: this.urlValue,
+        },
+      }));
+      this.updateAudioPlayer(); // Make a post request to audioPlayerUrl
     }
-
-    window.dispatchEvent(new CustomEvent("audio-player-switched", { // Makes items update
-      detail: {
-        audio_src: this.urlValue,
-      },
-    }))
 
     this.playTarget.classList.toggle("hidden");
     this.pauseTarget.classList.toggle("hidden");
@@ -36,6 +35,12 @@ export default class extends Controller {
     } else {
       window.audio.play();
     }
+
+    window.dispatchEvent(new CustomEvent("music:toggled", {
+      detail: {
+        audio_src: this.urlValue,
+      }
+    }))
   };
 
   async updateAudioPlayer() {
@@ -52,7 +57,7 @@ export default class extends Controller {
         this.pauseTarget.classList.add("hidden");
       }
     }
-  }
+  };
 
   audioToggled(e) {
     const newUrl = e.detail.audio_src;
