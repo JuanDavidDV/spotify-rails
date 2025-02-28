@@ -23,6 +23,7 @@
   </head>
 
   <body class="bg-green-300">
+    <%= render "layouts/navbar" unless current_artist %>
     <%= render "layouts/alerts" %>
     <%= yield %>
     <div id="audio-player" class="fixed bottom-0 w-full">
