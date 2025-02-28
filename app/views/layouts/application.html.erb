@@ -22,7 +22,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-green-300">
+  <body class="bg-green-300 <%= "pt-10" unless current_artist %> ">
     <%= render "layouts/navbar" unless current_artist %>
     <%= render "layouts/alerts" %>
     <%= yield %>
