@@ -2,8 +2,10 @@
   <div class="max-w-5xl w-full mx-auto px-8 h-full flex justify-between items-center">
     <%= link_to "Home Page", music_path, class:"bg-indigo-600 p-1 px-2 rounded-lg text-lg text-emerald-50 font-semibold hover:text-amber-200" %>
     <div class="flex gap-4 h-full items-center">
-      <%= link_to "Sign In", "#", class:"bg-indigo-600 p-1 px-2 rounded-lg text-lg text-emerald-50 font-semibold hover:text-amber-200" %>
-      <%= link_to "Create Account", "#", class:"bg-indigo-600 p-1 px-2 rounded-lg text-lg text-emerald-50 font-semibold hover:text-amber-200" %>
+      <% unless current_user %>
+        <%= link_to "Sign In", new_user_session_path, class:"bg-indigo-600 p-1 px-2 rounded-lg text-lg text-emerald-50 font-semibold hover:text-amber-200" %>
+        <%= link_to "Create Account", new_user_registration_path, class:"bg-indigo-600 p-1 px-2 rounded-lg text-lg text-emerald-50 font-semibold hover:text-amber-200" %>
+      <% end %>
     </div>
   </div>
 </div>
