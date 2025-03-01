@@ -6,10 +6,12 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field mb-4">
-          <%= f.label :stage_name %><br />
-          <%= f.text_field :stage_name, class: "w-full rounded-lg bg-gray-50 p-2" %>
-        </div>
+        <% if resource_name == :artist %>
+          <div class="field mb-4">
+            <%= f.label :stage_name %><br />
+            <%= f.text_field :stage_name, class: "w-full rounded-lg bg-gray-50 p-2" %>
+          </div>
+        <% end %>
 
         <div class="field mb-4">
           <%= f.label :email %><br />
