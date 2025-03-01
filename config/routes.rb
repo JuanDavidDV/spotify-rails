@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     resource :dashboard, to: "artists#dashboard"
   end
 
+  authenticated :user do
+    root "music#show", as: :authenticated_user_root
+  end
+
   resource :music, only: [ :show ], controller: :music do # names controller to music
     post "audio-player", to: "music#audio_player", on: :collection  # Does not pass id to this route
   end
