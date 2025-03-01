@@ -6,5 +6,14 @@ export default class extends Controller {
   toggle(e) {
     e.preventDefault();
     this.menuTarget.classList.toggle("hidden");
-  }
+  };
+
+  closeIfOutside(e) {
+    // Checks if current stimulus controller contains "being" clicked
+  if (!this.element.contains(e.target)) {
+    if (!this.menuTarget.classList.contains("hidden")) {
+      this.menuTarget.classList.add("hidden");
+      }
+    }
+  };
 }

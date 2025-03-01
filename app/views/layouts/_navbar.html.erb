@@ -3,7 +3,7 @@
     <%= link_to "Home Page", music_path, class:"bg-indigo-600 p-1 px-2 rounded-lg text-lg text-emerald-50 font-semibold hover:text-amber-200" %>
     <div class="flex gap-4 h-full items-center">
       <% if current_user %>
-        <div class="relative" data-controller="dropdown"> <!-- Data controller added for stimulus controller in JS -->
+        <div class="relative" data-controller="dropdown" data-action="click@window->dropdown#closeIfOutside"> <!-- Data controller added for stimulus controller in JS -->
           <%= link_to "#", data: { action: "dropdown#toggle" } do %>
             <div class="w-8 h-8 rounded-full bg-slate-500 p-1">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full text-white">
