@@ -20,6 +20,12 @@ export default class extends Controller {
         return clientSecret;
       }
     };
+
+    const stripeConnectInstance = loadConnectAndInitialize({
+      // This is your test publishable API key.
+      publishableKey: document.head.querySelector("meta[name='stripe-pk']").content, // Points to application.html.rb metadata to extract pk from credentials file
+      fetchClientSecret: fetchClientSecret,
+    });
     
     const accountOnboarding = stripeConnectInstance.create('account-onboarding');
     accountOnboarding.setOnExit(() => {
