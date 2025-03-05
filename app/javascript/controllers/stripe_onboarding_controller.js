@@ -4,19 +4,19 @@ import { post } from "@rails/request.js";
 
 // Connects to data-controller="stripe-onboarding"
 export default class extends Controller {
+  static values = { url: String };
+
   connect() {
     const fetchClientSecret = async () => {
       // Fetch the AccountSession client secret
-      const response = await post('/account_session');
+      const response = await post(this.urlValue);
       if (!response.ok) {
         // Handle errors on the client side here
         const {error} = await response.json();
         console.error('An error occurred: ', error);
-        document.querySelector('#error').removeAttribute('hidden');
         return undefined;
       } else {
         const {client_secret: clientSecret} = await response.json();
-        document.querySelector('#error').setAttribute('hidden', '');
         return clientSecret;
       }
     };
@@ -31,6 +31,7 @@ export default class extends Controller {
     accountOnboarding.setOnExit(() => {
       console.log('User exited the onboarding flow');
     });
-    container.appendChild(accountOnboarding);
+    
+    this.element.appendChild(accountOnboarding);
   }
 }
