@@ -5,4 +5,8 @@ class Artist < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :songs
+
+  def create_stripe_account
+    stripe_account = Stripe::Account.create()
+  end
 end
