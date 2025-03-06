@@ -12,11 +12,11 @@ export default class extends Controller {
       const response = await post(this.urlValue);
       if (!response.ok) {
         // Handle errors on the client side here
-        const {error} = await response.json();
+        const {error} = await response.json;
         console.error('An error occurred: ', error);
         return undefined;
       } else {
-        const {client_secret: clientSecret} = await response.json();
+        const {client_secret: clientSecret} = await response.json;
         return clientSecret;
       }
     };
