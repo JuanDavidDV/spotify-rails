@@ -1,4 +1,6 @@
 class StripeController < ApplicationController
+  before_action :auth_webhook_request, only: [ :webhooks ]
+
   def account_session
     account_session = Stripe::AccountSession.create({
       account: current_artist.stripe_account_id,
@@ -14,6 +16,30 @@ class StripeController < ApplicationController
   end
 
   def webhooks
-    
+    case @event.type
+    when "account.updated"
+      
+    else
+      puts "Unhandled event type: #{event.type}"
+    end
+  end
+
+  private
+
+  def auth_webhook_request  # Code extracted from Stripe website
+    payload = request.body.read
+    sig_header = request.env["HTTP_STRIPE_SIGNATURE"]
+
+    begin
+      @event = Stripe::Webhook.construct_event(
+        payload, sig_header, Rails.application.credentials.dig(:stripe, :wb_secret)
+      )
+    rescue JSON::ParserError => e
+      status 400
+      return
+    rescue Stripe::SignatureVerificationError => e
+      status 400
+      return
+    end
   end
 end
