@@ -12,4 +12,8 @@ class StripeController < ApplicationController
 
     render json: { client_secret: account_session.client_secret }
   end
+
+  def webhooks
+    
+  end
 end
