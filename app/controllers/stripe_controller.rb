@@ -18,15 +18,17 @@ class StripeController < ApplicationController
   def webhooks
     case @event.type
     when "account.updated"
-      
+
     else
       puts "Unhandled event type: #{event.type}"
     end
+    @webhook_event.processed!
   end
 
   private
 
   def auth_webhook_request  # Code extracted from Stripe website
+    @webhook_event = WebhookEvent.create(source: :stripe, data: @event)
     payload = request.body.read
     sig_header = request.env["HTTP_STRIPE_SIGNATURE"]
 
@@ -36,6 +38,7 @@ class StripeController < ApplicationController
       )
     rescue JSON::ParserError => e
       status 400
+      @webhook_event.failed!
       return
     rescue Stripe::SignatureVerificationError => e
       status 400
