@@ -52,7 +52,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_165546) do
     t.datetime "updated_at", null: false
     t.string "stage_name"
     t.string "stripe_account_id"
-    t.integer "stripe_status"
+    t.integer "stripe_status", default: 0
     t.index ["email"], name: "index_artists_on_email", unique: true
     t.index ["reset_password_token"], name: "index_artists_on_reset_password_token", unique: true
   end
@@ -80,7 +80,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_165546) do
   create_table "webhook_events", force: :cascade do |t|
     t.string "source"
     t.text "data"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
