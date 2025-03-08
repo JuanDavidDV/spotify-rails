@@ -41,10 +41,8 @@ class StripeController < ApplicationController
       )
     rescue JSON::ParserError => e
       status 400
-      return
     rescue Stripe::SignatureVerificationError => e
       status 400
-      return
     end
   end
 end
