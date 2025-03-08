@@ -2,10 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :artists
 
-  namespace :stripe do
-    post "/account-session", to: "stripe#account_session", as: :onboarding_session  # URL for stripe_onboarding controller stimulus js
-    post "/webhooks", to: "stripe#webhooks"
-  end
+  post "/account-session", to: "stripe#account_session", as: :onboarding_session  # URL for stripe_onboarding controller stimulus js
+  post "/stripe/webhooks", to: "stripe#webhooks"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

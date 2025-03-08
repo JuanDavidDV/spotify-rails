@@ -1,4 +1,5 @@
 class StripeController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [ :webhooks ]
   before_action :auth_webhook_request, only: [ :webhooks ]
 
   def account_session
@@ -16,11 +17,12 @@ class StripeController < ApplicationController
   end
 
   def webhooks
+    @webhook_event = WebhookEvent.create(source: :stripe, data: @event)
     case @event.type
-    when "account.updated"
+    when "account.updated":
 
     else
-      puts "Unhandled event type: #{event.type}"
+      puts "Unhandled event type: #{@event.type}"
     end
     @webhook_event.processed!
   end
@@ -28,17 +30,15 @@ class StripeController < ApplicationController
   private
 
   def auth_webhook_request  # Code extracted from Stripe website
-    @webhook_event = WebhookEvent.create(source: :stripe, data: @event)
     payload = request.body.read
     sig_header = request.env["HTTP_STRIPE_SIGNATURE"]
 
     begin
       @event = Stripe::Webhook.construct_event(
-        payload, sig_header, Rails.application.credentials.dig(:stripe, :wb_secret)
+        payload, sig_header, Rails.application.credentials.dig(:stripe, :wh_secret)
       )
     rescue JSON::ParserError => e
       status 400
-      @webhook_event.failed!
       return
     rescue Stripe::SignatureVerificationError => e
       status 400
