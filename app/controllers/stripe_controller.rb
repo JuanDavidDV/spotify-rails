@@ -9,8 +9,8 @@ class StripeController < ApplicationController
         account_onboarding: {
           enabled: true,
           features: { external_account_collection: true },
-        },
-      },
+        }
+      }
     })
 
     render json: { client_secret: account_session.client_secret }
@@ -19,7 +19,7 @@ class StripeController < ApplicationController
   def webhooks
     @webhook_event = WebhookEvent.create(source: :stripe, data: @event)
     case @event.type
-    when "account.updated":
+    when "account.updated"
 
     else
       puts "Unhandled event type: #{@event.type}"
