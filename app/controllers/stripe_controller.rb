@@ -18,10 +18,11 @@ class StripeController < ApplicationController
 
   def webhooks
     @webhook_event = WebhookEvent.create(source: :stripe, data: @event)
+    @artist = Artist.find_by_stripe_account_id(@event.account)
     case @event.type
     when "account.updated"
       if @event["data"]["object"]["payouts_enabled"] == true
-        # Update artist account
+        @artist.payouts_enabled!
       end
     else
       puts "Unhandled event type: #{@event.type}"
