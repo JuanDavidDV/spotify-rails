@@ -9,7 +9,9 @@
     </div>
   </div>
 
-  <div data-controller="stripe-onboarding" data-stripe-onboarding-url-value="<%= onboarding_session_path %>" class="bg-emerald-50 w-full p-10"> 
-  </div>
+  <% unless current_artist.payouts_enabled? %>
+    <div data-controller="stripe-onboarding" data-stripe-onboarding-url-value="<%= onboarding_session_path %>" class="bg-emerald-50 w-full p-10"> 
+    </div>
+  <% end %>
 </div>
 
