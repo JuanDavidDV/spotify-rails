@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.days do
-   rake :payout_artists
+   rake "payout_artists"
 end
