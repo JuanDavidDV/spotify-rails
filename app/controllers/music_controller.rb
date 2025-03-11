@@ -5,5 +5,6 @@ class MusicController < ApplicationController
 
   def audio_player
     @song = Song.find(params[:song_id])
+    @song.streams
   end
 end
