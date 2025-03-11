@@ -5,6 +5,7 @@ class Artist < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :songs
+  has_many :streams, through: :songs
 
   after_create_commit :create_stripe_account # Every time an artist signs up this call back will run
 
