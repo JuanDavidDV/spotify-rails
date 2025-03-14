@@ -1,14 +1,14 @@
-<div class="w-full min-h-screen flex flex-col items-center py-5">
-  <h1 class="font-bold text-7xl">Spotify Rails</h1>
+<div class="w-full min-h-screen flex flex-col items-center pt-3">
+  <h1 class="font-bold text-6xl pt-1">Spotify Rails</h1>
   <p class="pt-5 font-bold text-yellow-700 text-xl">Where music sounds better!</p>
   
-  <div class="pt-5 flex justify-center">
+  <div class="pt-3 flex justify-center">
     <%= link_to music_path do %>
-      <%= image_tag "play-button.png", class:"w-20 object-cover hover:bg-sky-500 transition-all duration-200 hover:scale-130 rounded-full overflow-hidden cursor-pointer" %>  
+      <%= image_tag "play-button.png", class:"w-20 object-cover hover:bg-sky-500 transition-all duration-200 hover:scale-120 rounded-full overflow-hidden cursor-pointer" %>  
     <% end %>
   </div>
 
-  <div class="grid grid-cols-3 gap-8 mt-5 mb-5 max-w-5xl w-full mx-auto">
+  <div class="grid grid-cols-3 gap-8 mt-3 mb-3 max-w-5xl w-full mx-auto">
     <%= image_tag "guitar.jpg", class: "h-65 w-full object-cover  rounded-lg" %>
     <%= image_tag "concert.jpg", class: "h-65 w-full object-cover  rounded-lg" %>
     <%= image_tag "instruments.jpg", class: "h-65 w-full object-cover  rounded-lg" %>
