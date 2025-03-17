@@ -82,6 +82,7 @@ production:
   primary: &primary_production
     <<: *default
     database: spotify_rails_production
+    url: <%= ENV['DATABASE_URL'] %>
     username: spotify_rails
     password: <%= ENV["SPOTIFY_RAILS_DATABASE_PASSWORD"] %>
   cache:
