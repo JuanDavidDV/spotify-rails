@@ -73,3 +73,5 @@ gem "stripe", "~> 13.5"
 gem "whenever", require: false
 
 gem "aws-sdk-s3", require: false
+
+ruby "3.3.5"
