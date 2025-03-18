@@ -1,14 +1,35 @@
+# Creates artists
 artists = [
   {
     stage_name: "Silvestre Dangon",
     email: "artist1@email.com",
     password: "Password12"
+  },
+  {
+    stage_name: "Marc Anthony",
+    email: "artist2@email.com",
+    password: "Password"
+  },
+  {
+    stage_name: "Aventura",
+    email: "artist3@email.com",
+    password: "Password"
+  },
+  {
+    stage_name: "Joe Arroyo",
+    email: "artist4@email.com",
+    password: "Password"
+  },
+  {
+    stage_name: "Fonseca",
+    email: "artist5@email.com",
+    password: "Password"
   }
 ]
 
 artists.each do |artist|
-  Artist.find_or_create_by(email: artist[:email]) do |a|  # find_or_create_by used to prevent duplicates when re-running seed file
-    a.stage_name = artist[:stage_name],
-    a.password = artist[:password]
+  existing_artist = Artist.find_by(email: artist[:email])
+  if existing_artist.nil?
+    Artist.create!(artist)
   end
 end
