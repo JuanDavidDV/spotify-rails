@@ -39,7 +39,13 @@ artists = [
   {
     stage_name: "Joe Arroyo",
     email: "artist4@email.com",
-    password: "Password"
+    password: "Password",
+    songs: [
+      { title: "Universal", image: "universal.gif", audio: "universal.mp3" },
+      { title: "camino", image: "camino.webp", audio: "camino.mp3" },
+      { title: "AI", image: "AI.gif", audio: "AI.mp3" },
+      { title: "Gato", image: "gato.jpeg", audio: "gato.mp3" }
+    ]
   },
   {
     stage_name: "Fonseca",
