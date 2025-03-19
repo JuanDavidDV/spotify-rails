@@ -3,17 +3,38 @@ artists = [
   {
     stage_name: "Silvestre Dangon",
     email: "artist1@email.com",
-    password: "Password12"
+    password: "Password12",
+    songs: [
+      { title: "Bubbles", image: "bubble.webp", audio: "bubble.mp3" },
+      { title: "Lack of Energy", image: "rhythmic-dancing.jpg", audio: "rhythmic-dancing.mp3" },
+      { title: "Respiro", image: "giphy.gif", audio: "giphy.mp3" }
+    ]
   },
   {
     stage_name: "Marc Anthony",
     email: "artist2@email.com",
-    password: "Password"
+    password: "Password",
+    songs: [
+      { title: "El Baile", image: "feid.jpg", audio: "feid.mp3" },
+      { title: "Motorizado", image: "moto.webp", audio: "motorizado.mp3" },
+      { title: "Running", image: "running.jpg", audio: "running.mp3" },
+      { title: "Lion", image: "lion.webp", audio: "lion.mp3" },
+      { title: "Lights", image: "lights.jpg", audio: "lights.mp3" }
+    ]
   },
   {
     stage_name: "Aventura",
     email: "artist3@email.com",
-    password: "Password"
+    password: "Password",
+    songs: [
+      { title: "Mountain", image: "mountain.jpg", audio: "mountain.mp3" },
+      { title: "Tiger", image: "tiger.avif", audio: "tiger.mp3" },
+      { title: "Under the Sea", image: "Under-the-sea.gif", audio: "Under-the-sea.mp3" },
+      { title: "Club Penguin", image: "Club-Penguin.webp", audio: "Club-Penguin.webp" },
+      { title: "Station", image: "station.gif", audio: "station.mp3" },
+      { title: "Lavoe", image: "lavoe.gif", audio: "lavoe.mp3" },
+      { title: "Spiderman", image: "spiderman.avif", audio: "spiderman.mp3" }
+    ]
   },
   {
     stage_name: "Joe Arroyo",
@@ -34,25 +55,9 @@ artists.each do |artist|
   end
 end
 
-# Creates songs for the Artists
-songs = {
-  "Silvestre Dangon" => [
-    { title: "Bubbles", image: "bubble.webp", audio: "bubble.mp3" },
-    { title: "Lack of Energy", image: "rhythmic-dancing.jpg", audio: "rhythmic-dancing.mp3" },
-    { title: "Respiro", image: "giphy.gif", audio: "giphy.mp3" }
-  ],
-  "Marc Anthony" => [
-    { title: "El Baile", image: "feid.jpg", audio: "feid.mp3" },
-    { title: "Motorizado", image: "moto.webp", audio: "motorizado.mp3" },
-    { title: "Running", image: "running.jpg", audio: "running.mp3" },
-    { title: "Lion", image: "lion.webp", audio: "lion.mp3" },
-    { title: "Lights", image: "lights.jpg", audio: "lights.mp3" }
-  ]
-}
 
 require "open-uri"
 
-# Ensure the directory structure exists: db/seeds/files/
 song_files = {
   "Silvestre Dangon" => { title: "Cásate Conmigo", image: "song1.jpg", audio: "song1.mp3" },
   "Marc Anthony" => { title: "Vivir Mi Vida", image: "song2.jpg", audio: "song2.mp3" },
@@ -72,7 +77,6 @@ artists.each do |artist_data|
     title: song_data[:title]
   )
 
-  # Attach image and audio file (Make sure files exist in db/seeds/files/)
   image_path = Rails.root.join("db/seeds/files", song_data[:image])
   audio_path = Rails.root.join("db/seeds/files", song_data[:audio])
 
