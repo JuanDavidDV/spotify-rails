@@ -50,7 +50,10 @@ artists = [
   {
     stage_name: "Fonseca",
     email: "artist5@email.com",
-    password: "Password"
+    password: "Password",
+    songs: [
+      { title: "Forest Run", image: "forest.jpg", audio: "forest.mp3" }
+    ]
   }
 ]
 
