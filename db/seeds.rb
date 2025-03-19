@@ -42,7 +42,11 @@ songs = {
     { title: "Respiro", image: "giphy.gif", audio: "giphy.mp3" }
   ],
   "Marc Anthony" => [
-    { title: "El Baile", image: "feid.jpg", audio: "feid.mp3" }
+    { title: "El Baile", image: "feid.jpg", audio: "feid.mp3" },
+    { title: "Motorizado", image: "moto.webp", audio: "motorizado.mp3" },
+    { title: "Running", image: "running.jpg", audio: "running.mp3" },
+    { title: "Lion", image: "lion.webp", audio: "lion.mp3" },
+    { title: "Lights", image: "lights.jpg", audio: "lights.mp3" }
   ]
 }
 
