@@ -70,6 +70,12 @@ artists.each do |artist_data|
 
     image_path = Rails.root.join("app/assets/images/#{artist_data[:stage_name]}", songs_data[:image])
     audio_path = Rails.root.join("app/assets/audio/#{artist_data[:stage_name]}", songs_data[:audio])
-  end
 
+    if File.exits?(image_path) && File.exist?(audio_path)
+      song.image.attach(io: File.open(image_path), filename: songs_data[:image])
+      song.audio_file.attach(io: File.open(audio_path), filename: song_data[:audio])
+    else
+      puts "Missing file(s) for #{song.title}"
+    end
+  end
 end
