@@ -57,42 +57,12 @@ artists = [
   }
 ]
 
-artists.each do |artist|
-  Artist.find_or_create_by!(email: artist[:email]) do |a|  # find_or_create_by! used to prevent duplicates when re-running seed file
-    a.stage_name = artist[:stage_name]
-    a.password = artist[:password]
-  end
-end
-
-
-require "open-uri"
-
-song_files = {
-  "Silvestre Dangon" => { title: "Cásate Conmigo", image: "song1.jpg", audio: "song1.mp3" },
-  "Marc Anthony" => { title: "Vivir Mi Vida", image: "song2.jpg", audio: "song2.mp3" },
-  "Aventura" => { title: "Obsesión", image: "song3.jpg", audio: "song3.mp3" },
-  "Joe Arroyo" => { title: "La Rebelión", image: "song4.jpg", audio: "song4.mp3" },
-  "Fonseca" => { title: "Eres Mi Sueño", image: "song5.jpg", audio: "song5.mp3" }
-}
-
+# Creates artists
 artists.each do |artist_data|
-  artist = Artist.find_by(email: artist_data[:email])
-  next unless artist  # Skip if artist is not found
-
-  song_data = song_files[artist.stage_name]
-  next unless song_data  # Skip if no song data for artist
-
-  song = artist.songs.create!(
-    title: song_data[:title]
-  )
-
-  image_path = Rails.root.join("db/seeds/files", song_data[:image])
-  audio_path = Rails.root.join("db/seeds/files", song_data[:audio])
-
-  if File.exist?(image_path) && File.exist?(audio_path)
-    song.image.attach(io: File.open(image_path), filename: song_data[:image])
-    song.audio_file.attach(io: File.open(audio_path), filename: song_data[:audio])
-  else
-    puts "Missing file(s) for #{song.title}"
+  artist = Artist.find_or_create_by!(email: artist_data[:email]) do |a| # find_or_create_by! used to prevent duplicates when re-running seed file
+    a.stage_name = artist_data[:stage_name]
+    a.password = artist_data[:password]
   end
+
+
 end
