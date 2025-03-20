@@ -64,5 +64,12 @@ artists.each do |artist_data|
     a.password = artist_data[:password]
   end
 
+  # Creates songs for each artists
+  artist_data[:songs].each do |songs_data|
+    song = artist.songs.find_or_create_by!(title: songs_data[:title])
+
+    image_path = Rails.root.join("app/assets/images/#{artist_data[:stage_name]}", songs_data[:image])
+    audio_path = Rails.root.join("app/assets/audio/#{artist_data[:stage_name]}", songs_data[:audio])
+  end
 
 end
