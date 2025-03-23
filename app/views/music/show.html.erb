@@ -3,7 +3,7 @@
     <% @songs.each do |song| %>
       <div class="w-full" >
         <div class="relative w-full">
-          <%= image_tag(song.image, class: "h-96 md:h-40 w-full object-cover rounded-lg") %>
+          <%= image_tag(rails_blob_path(song.image, only_path: true), class: "h-96 md:h-40 w-full object-cover rounded-lg") if song.image.attached? %>
           <div class="absolute inset-0 flex items-center justify-center">
             <%= render "play", song: song %>
           </div>
