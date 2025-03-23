@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_23_141955) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_23_144046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -68,6 +68,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_141955) do
     t.string "queue_name"
     t.string "active_job_id"
     t.integer "priority"
+    t.datetime "scheduled_at"
   end
 
   create_table "songs", force: :cascade do |t|

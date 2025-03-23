@@ -1,0 +1,5 @@
+class AddScheduledAtToSolidQueueJobs < ActiveRecord::Migration[8.0]
+  def change
+    add_column :solid_queue_jobs, :scheduled_at, :datetime
+  end
+end
