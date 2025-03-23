@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_23_194457) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_23_195359) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -66,6 +66,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_194457) do
     t.string "queue_name"
     t.string "active_job_id"
     t.string "concurrency_key"
+  end
+
+  create_table "solid_queue_ready_executions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "job_id"
+    t.datetime "ready_at"
   end
 
   create_table "songs", force: :cascade do |t|
