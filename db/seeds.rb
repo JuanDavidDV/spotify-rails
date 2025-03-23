@@ -30,7 +30,7 @@ artists = [
       { title: "Mountain", image: "mountain.jpg", audio: "mountain.mp3" },
       { title: "Tiger", image: "tiger.avif", audio: "tiger.mp3" },
       { title: "Under the Sea", image: "Under-the-sea.gif", audio: "Under-the-sea.mp3" },
-      { title: "Club Penguin", image: "Club-Penguin.webp", audio: "Club-Penguin.webp" },
+      { title: "Club Penguin", image: "Club-Penguin.webp", audio: "Club-Penguin.mp3" },
       { title: "Station", image: "station.gif", audio: "station.mp3" },
       { title: "Lavoe", image: "lavoe.gif", audio: "lavoe.mp3" },
       { title: "Spiderman", image: "spiderman.avif", audio: "spiderman.mp3" }
@@ -43,8 +43,7 @@ artists = [
     songs: [
       { title: "Universal", image: "universal.gif", audio: "universal.mp3" },
       { title: "camino", image: "camino.webp", audio: "camino.mp3" },
-      { title: "AI", image: "AI.gif", audio: "AI.mp3" },
-      { title: "Gato", image: "gato.jpeg", audio: "gato.mp3" }
+      { title: "AI", image: "AI.gif", audio: "AI.mp3" }
     ]
   },
   {
