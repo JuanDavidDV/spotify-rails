@@ -73,7 +73,7 @@ artists.each do |artist_data|
 
     if File.exist?(image_path) && File.exist?(audio_path)
       song.image.attach(io: File.open(image_path), filename: songs_data[:image])
-      song.audio_file.attach(io: File.open(audio_path), filename: song_data[:audio])
+      song.audio_file.attach(io: File.open(audio_path), filename: songs_data[:audio])
     else
       puts "Missing file(s) for #{song.title}"
     end
