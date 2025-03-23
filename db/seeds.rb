@@ -68,9 +68,9 @@ artists.each do |artist_data|
   artist_data[:songs].each do |songs_data|
     song = artist.songs.find_or_create_by!(title: songs_data[:title])
 
-    image_path = Rails.root.join("app/assets/images/#{artist_data[:stage_name]}", songs_data[:image])
+    image_path = Rails.root.join("assets/images/#{artist_data[:stage_name]}", songs_data[:image])
     puts image_path
-    audio_path = Rails.root.join("app/assets/audio/#{artist_data[:stage_name]}", songs_data[:audio])
+    audio_path = Rails.root.join("assets/audio/#{artist_data[:stage_name]}", songs_data[:audio])
     puts audio_path
 
     if File.exist?(image_path) && File.exist?(audio_path)
