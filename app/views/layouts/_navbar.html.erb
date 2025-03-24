@@ -2,7 +2,7 @@
   <div class="max-w-5xl w-full mx-auto px-8 h-full flex justify-between items-center">
     <div class="flex gap-4 h-full items-center">
       <%= link_to "Home Page", root_path, class:"bg-indigo-600 p-1 px-2 rounded-md text-md text-emerald-50 font-semibold hover:text-amber-200" %>
-      <%= link_to "Music Page", music_path, class:"bg-indigo-600 p-1 px-2 rounded-md text-md text-emerald-50 font-semibold hover:text-amber-200" %>
+      <%= link_to "Music Page", music_path, class: current_user ? "hidden" : "bg-indigo-600 p-1 px-2 rounded-md text-md text-emerald-50 font-semibold hover:text-amber-200" %>
     </div>
     <div class="flex gap-4 h-full items-center">
       <% if current_user %>
