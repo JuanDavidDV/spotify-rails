@@ -1,4 +1,4 @@
-# E-Commerce
+# Spotify-Rails
 This application was created and developed on a Windows computer. If you are running this application from a Windows computer, for a better experience, please use the Windows Subsystem for Linux (WSL), which allows you to run Linux distributions natively without the need for a Virtual Machine (VM). This application was developed on a Linux server. 
 
 ## Application Description
