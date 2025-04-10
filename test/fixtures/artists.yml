@@ -2,15 +2,15 @@
 
 one:
   email: artistone@email.com
-  encrypted_password: Password
+  encrypted_password: <%= Devise::Encryptor.digest(Artist, 'Password') %>
   stage_name: ArtistOne
 
 two:
   email: artisttwo@email.com
-  encrypted_password: Password
+  encrypted_password: <%= Devise::Encryptor.digest(Artist, 'Password') %>
   stage_name: ArtistTwo
 
 three: 
   email: artistthree@email.com
-  encrypted_password: Password
+  encrypted_password: <%= Devise::Encryptor.digest(Artist, 'Password') %>
   stage_name: ArtistThree
