@@ -26,6 +26,12 @@ class SongTest < ActiveSupport::TestCase
     assert_includes @song.errors[:title], "can't be blank"
   end
 
+  test "should be invalid without an artist" do
+    @song.artist = nil
+    assert_not @song.valid?
+    assert_includes @song.errors[:artist], "must exist"
+  end
+
   test "should be invalid without an audio file" do
     @song.audio_file.detach     # Removes audio file
     assert_not @song.valid?
@@ -36,5 +42,12 @@ class SongTest < ActiveSupport::TestCase
     @song.image.detach          # Removes image file
     assert_not @song.valid?
     assert_includes @song.errors[:image], "can't be blank"
+  end
+
+  test "should destroy associated streams when song is destroyed" do
+    @song.streams.create!
+    assert_difference("Stream.count", -2) do
+      @song.destroy
+    end
   end
 end

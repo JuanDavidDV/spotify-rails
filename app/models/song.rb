@@ -6,4 +6,5 @@ class Song < ApplicationRecord
   # Created for tests
   validates :title, presence: true
   validates :audio_file, presence: true
+  validates :image, presence: true
 end
