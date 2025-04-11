@@ -1,5 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# Active Storage attachements cannot be set directly in YAML fixtures. Because of this, image and audio files fields are not being added
 one:
   title: FirstSong
   artist: one
@@ -7,3 +7,7 @@ one:
 two:
   title: SecondSong
   artist: two
+
+three:
+  title: ThirdSong
+  artist: three
