@@ -1,48 +1,22 @@
 require "test_helper"
 
-class MusicsControllerTest < ActionDispatch::IntegrationTest
+class MusicControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @music = musics(:one)
+    @song = songs(:one)
+    @user = users(:one)
   end
 
-  test "should get index" do
-    get musics_url
+  test "should get show and list of songs" do
+    get music_path
     assert_response :success
   end
 
-  test "should get new" do
-    get new_music_url
-    assert_response :success
-  end
-
-  test "should create music" do
-    assert_difference("Music.count") do
-      post musics_url, params: { music: {} }
+  test "should create stream when audio_player is hit without user" do
+    assert_difference("Stream.count", 1) do
+      post audio_player_music_path, params: { song_id: @song.id }
     end
-
-    assert_redirected_to music_url(Music.last)
-  end
-
-  test "should show music" do
-    get music_url(@music)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_music_url(@music)
-    assert_response :success
-  end
-
-  test "should update music" do
-    patch music_url(@music), params: { music: {} }
-    assert_redirected_to music_url(@music)
-  end
-
-  test "should destroy music" do
-    assert_difference("Music.count", -1) do
-      delete music_url(@music)
-    end
-
-    assert_redirected_to musics_url
+    assert_equal @song.id, Stream.last.song_id
+    assert_nil Stream.last.user_id  # Nil if user is not logged in
   end
 end
