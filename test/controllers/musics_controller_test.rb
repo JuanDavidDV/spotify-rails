@@ -19,4 +19,10 @@ class MusicControllerTest < ActionDispatch::IntegrationTest
     assert_equal @song.id, Stream.last.song_id
     assert_nil Stream.last.user_id  # Nil if user is not logged in
   end
+
+  test "should associate stream counts with current_user if signed in" do
+    sign_in @user
+
+    assert_difference()
+  end
 end
