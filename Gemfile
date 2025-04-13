@@ -75,3 +75,5 @@ gem "whenever", require: false
 gem "aws-sdk-s3", require: false
 
 ruby "3.3.5"
+
+gem "mocha", "~> 2.7", :group => :test
