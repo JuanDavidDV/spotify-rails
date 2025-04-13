@@ -23,6 +23,10 @@ class MusicControllerTest < ActionDispatch::IntegrationTest
   test "should associate stream counts with current_user if signed in" do
     sign_in @user
 
-    assert_difference()
+    assert_difference("Stream.count", 1) do
+      post audio_player_music_path, params: { song_id: @song.id }, headers: { "ACCEPT" => "text/html" }
+    end
+    assert_response :success
+    assert_equal @user.id, Stream.last.user_id
   end
 end
