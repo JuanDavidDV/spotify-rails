@@ -16,7 +16,7 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
     sign_out @artist
 
     get songs_url
-    assert_response :redirect
+    assert_response :not_found
   end
 
   test "should get new" do
