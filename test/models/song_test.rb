@@ -16,7 +16,7 @@ class SongTest < ActiveSupport::TestCase
     @song.image.attach(
       io: File.open(Rails.root.join("test/fixtures/files/images/lion.webp")),
       filename: "lion.webp",
-      content_type: "image/jpeg"
+      content_type: "image/webp"
     )
   end
 
