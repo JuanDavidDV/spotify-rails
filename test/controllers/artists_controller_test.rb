@@ -15,6 +15,14 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", /Welcome to the Artist Dashboard/i
   end
 
+  test "should get dashboard and NOT retrieve balance if payouts are disable" do
+    @artist.stubs(:payouts_enabled?).return(false)
+    Stripe::Balance.expects(:retrieve).never
+
+    get dashboard_path
+    assert_response :success
+  end
+
   test "should get new" do
     get new_artist_url
     assert_response :success
