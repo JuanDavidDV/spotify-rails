@@ -29,13 +29,13 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
     image_file = fixture_file_upload("images/lion.webp")
 
     assert_difference("Song.count", 1) do
-      post songs_url, params: 
-      { song: { artist_id: @song.artist_id,
-        title: @song.title,
-        audio_file: audio_file,
-        image: image_file
+      post songs_url, params:
+        { song: { artist_id: @song.artist_id,
+          title: @song.title,
+          audio_file: audio_file,
+          image: image_file
+        }
       }
-    }
     end
 
     assert_redirected_to song_url(Song.last)
@@ -52,7 +52,17 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update song" do
-    patch song_url(@song), params: { song: { artist_id: @song.artist_id, title: @song.title } }
+    audio_file = fixture_file_upload("audios/tiger.mp3")
+    image_file = fixture_file_upload("images/lion.webp")
+
+    patch song_url(@song), params:
+      { song: { artist_id: @song.artist_id,
+        title: @song.title,
+        audio_file: audio_file,
+        image: image_file
+        }
+      }
+
     assert_redirected_to song_url(@song)
   end
 
