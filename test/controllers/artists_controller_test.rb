@@ -3,11 +3,16 @@ require "test_helper"
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @artist = artists(:one)
+    sign_in @artist
   end
 
-  test "should get index" do
-    get artists_url
+  test "should get dashboard and retreive balance if payouts are enabled" do
+    @artist.stubs(:payouts_enabled?).return(true) # Stubs comes from Mocha gem
+    Stripe::Balance.stubs(:retrieve).returns({ "available" => [ { "amount" => 1000 } ] })
+
+    get dashboard_path
     assert_response :success
+    assert_select "h1", /Welcome to the Artist Dashboard/i
   end
 
   test "should get new" do
