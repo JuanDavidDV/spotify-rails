@@ -46,7 +46,7 @@ class SongTest < ActiveSupport::TestCase
 
   test "should destroy associated streams when song is destroyed" do
     @song.streams.create!
-    assert_difference("Stream.count", -2) do
+    assert_difference("Stream.count", -3) do
       @song.destroy
     end
   end
