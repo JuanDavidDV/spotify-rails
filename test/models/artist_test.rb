@@ -35,4 +35,8 @@ class ArtistTest < ActiveSupport::TestCase
     artist = Artist.new(email: "test@email.com", password: "Password")
     assert_equal "awaiting_onboarding", artist.stripe_status
   end
+
+  test "should define stripe_status enum correctly" do
+    assert_equal({ "awaiting_onboarding" => 0, "payouts_enabled" => 1 }, Artist.stripe_statuses)
+  end
 end
