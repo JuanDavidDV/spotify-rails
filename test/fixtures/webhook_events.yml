@@ -1,11 +1,32 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# Pending
 one:
-  source: MyString
-  data: MyText
-  status: 1
+  source: stripe
+  data: 
+    {
+      "event_type": "payment_intent.succeeded",
+      "amount": 1000,
+      "currency": "usd"
+    }
+  status: 0  
 
+# Processed
 two:
-  source: MyString
-  data: MyText
-  status: 1
+  source: stripe
+  data: 
+    {
+      "event_type": "account.updated",
+      "details": { "payouts_enabled": true }
+    }
+  status: 2
+
+# Failed
+three:
+  source: stripe
+  data: 
+    {
+      "event_type": "payment_intent.failed",
+      "error": "insufficient_funds"
+    }
+  status: 1 
