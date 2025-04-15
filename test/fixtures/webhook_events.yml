@@ -3,30 +3,16 @@
 # Pending
 one:
   source: stripe
-  data: 
-    {
-      "event_type": "payment_intent.succeeded",
-      "amount": 1000,
-      "currency": "usd"
-    }
-  status: 0  
+  data: '{"event_type":"payment_intent.succeeded"}'
+  status: pending
 
-# Processed
 two:
   source: stripe
-  data: 
-    {
-      "event_type": "account.updated",
-      "details": { "payouts_enabled": true }
-    }
-  status: 2
+  data: '{"event_type":"account.updated", "details":{"payouts_enabled":true}}'
+  status: processed
 
-# Failed
 three:
   source: stripe
-  data: 
-    {
-      "event_type": "payment_intent.failed",
-      "error": "insufficient_funds"
-    }
-  status: 1 
+  data: '{"event_type":"payment_intent.failed"}'
+  status: failed
+
