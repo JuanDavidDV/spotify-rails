@@ -30,4 +30,9 @@ class ArtistTest < ActiveSupport::TestCase
     assert_equal :has_many, streams_association.macro
     assert_equal :songs, streams_association.options[:through]
   end
+
+  test "should default stripe status to awaiting_onboarding to new Artists" do
+    artist = Artist.new(email: "test@email.com", password: "Password")
+    assert_equal "awaiting_onboarding", artist.stripe_status
+  end
 end
