@@ -1,7 +1,13 @@
 require "test_helper"
 
 class ArtistTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @artist = artists(:one)
+  end
+
+  test "should be valid with fixtures data" do
+    assert @artist.valid?
+  end
+
+  
 end
