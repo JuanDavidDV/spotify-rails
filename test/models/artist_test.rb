@@ -9,5 +9,15 @@ class ArtistTest < ActiveSupport::TestCase
     assert @artist.valid?
   end
 
-  
+  test "should be invalid without an email" do
+    @artist.email = ""
+    assert_not @artist.valid?
+    assert_includes @artist.errors[:email], "can't be blank"
+  end
+
+  test "should be invalid without a password" do
+    artist = Artist.new(email: "test@email.com", password: nil)
+    assert_not artist.valid?
+    assert_includes artist.errors[:password], "can't be blank"
+  end
 end
