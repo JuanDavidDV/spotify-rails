@@ -24,4 +24,10 @@ class ArtistTest < ActiveSupport::TestCase
   test "should have many songs" do
     assert_equal :has_many, Artist.reflect_on_association(:songs).macro # macro returns the type of association defined, in this case "has_many"
   end
+
+  test "should have many streams through songs" do
+    streams_association = Artist.reflect_on_association(:streams)
+    assert_equal :has_many, streams_association.macro
+    assert_equal :songs, streams_association.options[:through]
+  end
 end
