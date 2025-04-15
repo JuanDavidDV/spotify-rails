@@ -11,6 +11,8 @@ class Artist < ApplicationRecord
 
   enum :stripe_status, [ "awaiting_onboarding", "payouts_enabled" ]
 
+  validates :stage_name, presence: true
+
   def create_stripe_account
     stripe_account = Stripe::Account.create()
     update(stripe_account_id: stripe_account.id)
