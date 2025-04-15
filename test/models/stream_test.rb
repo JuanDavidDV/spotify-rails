@@ -1,7 +1,8 @@
 require "test_helper"
 
 class StreamTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @song = songs(:one)
+    @user = users(:one)
+  end
 end
