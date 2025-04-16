@@ -1,26 +1,20 @@
-<% content_for :title, "Songs" %>
-
-<div class="mx-auto md:w-2/3 w-full py-10">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Songs</h1>
-    <%= link_to "New song", new_song_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-    <%= link_to "Dashboard", dashboard_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>
-
-  <div id="songs" class="min-w-full">
-    <% if @songs.any? %>
-      <% @songs.each do |song| %>
-        <%= render song %>
-        <p>
-          <%= link_to "Show this song", song, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-        </p>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No songs found.</p>
+<div class="min-h-screen w-full bg-green-950 pb-16">
+  <div class="max-w-5xl w-full mx-auto p-8 grid md:grid-cols-4 gap-8">
+    <% @songs.each do |song| %>
+      <div class="w-full" >
+        <div class="relative w-full">
+          <%= image_tag(rails_blob_path(song.image, only_path: true), class: "h-96 md:h-40 w-full object-cover rounded-lg") if song.image.attached? %>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <%= render "play", song: song %>
+          </div>
+        </div>
+        <div class="flex mt-2">
+          <div class="flex flex-col">  
+            <p class="text-xl text-gray-100"> <%= song.title %> </p>
+            <p class="text text-gray-200 font-bold"> <%= song.artist.stage_name %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

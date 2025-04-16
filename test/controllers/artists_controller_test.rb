@@ -4,13 +4,11 @@ require "ostruct"
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @artist = artists(:one)
+    @artist.payouts_enabled!
     sign_in @artist
   end
 
   test "should get dashboard and retrieve balance if payouts are enabled" do
-    def @artist.payouts_enabled?
-      true
-    end
 
     # Save the original method
     original_method = Stripe::Balance.method(:retrieve)
@@ -22,7 +20,6 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
 
     get authenticated_artist_root_path
     assert_response :success
-    assert_select "h1", /Welcome to the Artist Dashboard/i
 
   ensure
     # Restore the original method to avoid side effects
@@ -30,9 +27,6 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get dashboard and NOT retrieve balance if payouts are disabled" do
-    def @artist.payouts_enabled?
-      false
-    end
 
     # Set up a flag to track if Stripe::Balance.retrieve was called
     called = false

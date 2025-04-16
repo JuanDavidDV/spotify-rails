@@ -6,6 +6,7 @@ class ArtistsTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
+    sign_in @artist
     visit artists_url
     assert_selector "h1", text: "Artists"
   end

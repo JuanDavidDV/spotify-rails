@@ -11,19 +11,20 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  resources :songs, only: [:index]
+  
   authenticated :artist do  # If artist sign in will go to dashboard by default
     root "artists#dashboard", as: :authenticated_artist_root
-    resources :songs
-    resource :dashboard, to: "artists#dashboard"
+    resources :songs, only: [:new, :create, :edit, :update, :destroy, :show]
+    resource :dashboard, only: [:show], controller: "artists"
   end
 
   authenticated :user do
-    root "music#show", as: :authenticated_user_root
+    root "songs#index", as: :authenticated_user_root
   end
 
-  resource :music, only: [ :show ], controller: :music do # names controller to music
-    post "audio-player", to: "music#audio_player", on: :collection  # Does not pass id to this route
-  end
+  post "audio-player", to: "songs#audio_player", as: :audio_player
+
   # Defines the root path route ("/")
   root "home#index"
 end
