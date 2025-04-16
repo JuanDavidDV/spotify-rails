@@ -9,7 +9,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show all artists song" do
-    get artists_url
+    get artist_songs_url
     assert_response :success
   end
 
