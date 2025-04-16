@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :songs, only: [:index]
-  
+
   authenticated :artist do  # If artist sign in will go to dashboard by default
     root "artists#dashboard", as: :authenticated_artist_root
     resources :songs, only: [:new, :create, :edit, :update, :destroy, :show]
-    resource :dashboard, only: [:show], controller: "artists"
+    resource :dashboard, only: [ :show ], controller: "artists"
+    resources :artists, only: [ :index ], path: "artists/songs"
   end
 
   authenticated :user do
