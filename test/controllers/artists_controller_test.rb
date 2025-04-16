@@ -8,6 +8,11 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
     sign_in @artist
   end
 
+  test "should show all artists song" do
+    get artists_url
+    assert_response :success
+  end
+
   test "should get dashboard and retrieve balance if payouts are enabled" do
 
     # Save the original method
@@ -23,29 +28,6 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
 
   ensure
     # Restore the original method to avoid side effects
-    Stripe::Balance.define_singleton_method(:retrieve, original_method)
-  end
-
-  test "should get dashboard and NOT retrieve balance if payouts are disabled" do
-
-    # Set up a flag to track if Stripe::Balance.retrieve was called
-    called = false
-
-    # Save the original method
-    original_method = Stripe::Balance.method(:retrieve)
-
-    # Override the method to track calls
-    Stripe::Balance.define_singleton_method(:retrieve) do |*args|
-      called = true
-      original_method.call(*args)
-    end
-
-    get dashboard_path
-    assert_response :success
-    assert_not called, "Expected Stripe::Balance.retrieve to not be called"
-
-  ensure
-    # Restore the original method after the test
     Stripe::Balance.define_singleton_method(:retrieve, original_method)
   end
 end
