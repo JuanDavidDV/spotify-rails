@@ -8,7 +8,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
     sign_in @artist
   end
 
-  test "should show all artists song" do
+  test "Should show all songs by the currently signed-in artist" do
     get artist_songs_url
     assert_response :success
   end
