@@ -3,28 +3,29 @@ require "test_helper"
 class SongsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @artist = artists(:one)
-    sign_in @artist
     @song = songs(:one)
   end
 
-  test "should get index if signed in" do
+  test "should get index that displays all the songs" do
     get songs_url
     assert_response :success
   end
 
-  test "should not get index if signed out" do
-    sign_out @artist
+  test "should be able to get a form to create a new song if an artist is sign in" do
+    sign_in @artist
 
-    get songs_url
-    assert_response :not_found
-  end
-
-  test "should get new" do
     get new_song_url
     assert_response :success
   end
 
+  test "should not be able to get a form to create a new song if an artist is not sign in" do
+    get new_song_url
+    assert_response :not_found
+  end
+
   test "should create song" do
+    sign_in @artist
+
     audio_file = fixture_file_upload("audios/tiger.mp3")
     image_file = fixture_file_upload("images/lion.webp")
 
@@ -41,17 +42,23 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to song_url(Song.last)
   end
 
-  test "should show song" do
+  test "should show song details" do
+    sign_in @artist
+
     get song_url(@song)
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should edit the song" do
+    sign_in @artist
+
     get edit_song_url(@song)
     assert_response :success
   end
 
   test "should update song" do
+    sign_in @artist
+
     audio_file = fixture_file_upload("audios/tiger.mp3")
     image_file = fixture_file_upload("images/lion.webp")
 
@@ -66,7 +73,9 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to song_url(@song)
   end
 
-  test "should destroy song" do
+  test "should destroy the song" do
+    sign_in @artist
+
     assert_difference("Song.count", -1) do
       delete song_url(@song)
     end
