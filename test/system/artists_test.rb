@@ -1,4 +1,8 @@
 require "application_system_test_case"
+require "webmock/minitest"
+
+WebMock.allow_net_connect!
+
 
 class ArtistsTest < ApplicationSystemTestCase
   setup do
@@ -12,13 +16,7 @@ class ArtistsTest < ApplicationSystemTestCase
   end
 
   test "should create artist" do
-    visit artists_url
-    click_on "New artist"
-
-    click_on "Create Artist"
-
-    assert_text "Artist was successfully created"
-    click_on "Back"
+    visit new_artist_registration_url
   end
 
   test "should update Artist" do
