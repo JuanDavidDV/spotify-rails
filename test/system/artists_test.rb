@@ -1,9 +1,6 @@
 require "application_system_test_case"
 require "webmock/minitest"
 
-WebMock.allow_net_connect!
-
-
 class ArtistsTest < ApplicationSystemTestCase
   setup do
     @artist = artists(:one)
@@ -11,7 +8,7 @@ class ArtistsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     sign_in @artist
-    visit artists_url
+    visit authenticated_artist_root_url
     assert_selector "h1", text: "Artists"
   end
 

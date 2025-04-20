@@ -1,10 +1,9 @@
 require "test_helper"
+WebMock.allow_net_connect!
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   WINDOWS_HOST = `ip route | grep default | awk '{print $3}'`.strip
   CHROMEDRIVER_URL = "http://#{WINDOWS_HOST}:9515/"
-
-
   driven_by :selenium_remote_chrome
 
   Capybara.register_driver :selenium_remote_chrome do |app|
@@ -12,7 +11,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     options.add_argument('--start-maximized')
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
-
 
     Capybara::Selenium::Driver.new(
       app,
