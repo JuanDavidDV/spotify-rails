@@ -48,9 +48,18 @@ class ArtistsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Artist" do
-    visit artist_url(@artist)
-    click_on "Destroy this artist", match: :first
+    @artist.songs.destroy_all
 
-    assert_text "Artist was successfully destroyed"
+    visit new_artist_session_url
+    fill_in "Email", with: @artist.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
+
+    click_on "Edit your account"
+    accept_confirm do
+      click_on "Cancel my account"
+    end
+
+    assert_text "Bye! Your account has been successfully cancelled. We hope to see you again soon."
   end
 end
