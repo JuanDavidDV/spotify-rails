@@ -64,6 +64,7 @@ group :test do
   gem "selenium-webdriver", "~> 4.0"
   gem "webmock"
   gem "webdrivers"
+  gem "stripe-ruby-mock"
 end
 
 gem "devise", "~> 4.9"

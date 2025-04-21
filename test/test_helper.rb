@@ -2,33 +2,29 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "webmock/minitest"
-include WebMock::API
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 module ActiveSupport
   class TestCase
-    # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
-
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    setup do
+      # Mock Stripe API responses
+      stub_request(:post, "https://api.stripe.com/v1/account_sessions")
+        .to_return(
+          status: 200,
+          body: {
+            id: "acct_session_123",
+            client_secret: "secret_1234567890"
+          }.to_json,
+          headers: { "Content-Type" => "application/json" }
+        )
+    end
   end
+
   class ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
   end
 end
-
-# This section is created to mainly for system tests:
-WebMock.disable_net_connect!(allow_localhost: true)
-
-Stripe.api_key = "sk_test_1234567890fake"
-
-# Stub ALL requests to Stripe API
-stub_request(:any, /api.stripe.com/).to_return(
-  status: 200,
-  body: {
-    client_secret: "test123"
-}.to_json, # dummy empty JSON response
-  headers: { "Content-Type" => "application/json" }
-)

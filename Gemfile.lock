@@ -121,6 +121,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    dante (0.2.0)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -202,6 +203,7 @@ GEM
     mocha (2.7.1)
       ruby2_keywords (>= 0.0.5)
     msgpack (1.8.0)
+    multi_json (1.15.0)
     net-imap (0.5.6)
       date
       net-protocol
@@ -376,6 +378,10 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.5)
     stripe (13.5.0)
+    stripe-ruby-mock (2.5.8)
+      dante (>= 0.2.0)
+      multi_json (~> 1.0)
+      stripe (>= 2.0.3)
     tailwind_devise (0.0.3)
       rails (>= 6.0)
     tailwindcss-rails (4.0.0)
@@ -466,6 +472,7 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   stripe (~> 13.5)
+  stripe-ruby-mock
   tailwind_devise (~> 0.0.3)
   tailwindcss-rails
   thruster
