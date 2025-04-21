@@ -11,7 +11,6 @@ class SongsTest < ApplicationSystemTestCase
     assert_selector "[data-music-target='play']"  # This is the play SVG to play a song
   end
 
-
   test "should create a song" do
     visit new_artist_session_url
 
@@ -52,7 +51,7 @@ class SongsTest < ApplicationSystemTestCase
     attach_file "Audio file", audio_path
 
     click_on "Update Song"
-    assert_selector "h1", text: "Showing song"
+    assert_selector "p", text: "New Test"
   end
 
   test "should destroy a song" do
