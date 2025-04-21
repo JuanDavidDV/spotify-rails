@@ -49,7 +49,7 @@ class SongsController < ApplicationController
     @song.destroy!
 
     respond_to do |format|
-      format.html { redirect_to songs_path, status: :see_other, notice: "Song was successfully destroyed." }
+      format.html { redirect_to artist_songs_path, status: :see_other, notice: "Song was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -57,8 +57,7 @@ class SongsController < ApplicationController
   def audio_player
     @song = Song.find(params[:song_id])
     @song.streams.create(user: current_user)
-  
-  
+
     respond_to do |format|
       format.turbo_stream
     end

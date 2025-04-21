@@ -14,21 +14,21 @@ class SongsTest < ApplicationSystemTestCase
 
   test "should create a song" do
     visit new_artist_session_url
-  
+
     fill_in "Email", with: @artist.email
     fill_in "Password", with: "Password"
     click_on "Log in"
-  
+
     click_on "Post a song"
-  
+
     fill_in "Title", with: "Song Test"
-  
+
     image_path = File.expand_path("test/fixtures/files/images/lion.webp")
     audio_path = File.expand_path("test/fixtures/files/audios/tiger.mp3")
-  
+
     attach_file "Image", image_path
     attach_file "Audio file", audio_path
-  
+
     click_on "Create Song"
     assert_selector "h1", text: "Showing song"
   end
@@ -55,10 +55,16 @@ class SongsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Showing song"
   end
 
-  test "should destroy Song" do
-    visit song_url(@song)
-    click_on "Destroy this song", match: :first
+  test "should destroy a song" do
+    visit new_artist_session_url
 
-    assert_text "Song was successfully destroyed"
+    fill_in "Email", with: @artist.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
+
+    click_on "View your songs"
+    click_on "Show this song", match: :first
+    click_on "Destroy this song"
+    assert_selector "h1", text: "Songs"
   end
 end
