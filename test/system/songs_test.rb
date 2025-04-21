@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class SongsTest < ApplicationSystemTestCase
   setup do
+    @artist = artist(:one)
     @song = songs(:one)
   end
 
@@ -11,6 +12,7 @@ class SongsTest < ApplicationSystemTestCase
   end
 
   test "should create song" do
+    visit new_artist_session_path 
     visit songs_url
     click_on "New song"
 

@@ -6,7 +6,7 @@ class ArtistsTest < ApplicationSystemTestCase
   end
 
   test "visiting the artist dashboard" do
-    visit new_artist_session_path
+    visit new_artist_session_url
     fill_in "Email", with: @artist.email
     fill_in "Password", with: "Password"
     click_on "Log in"
