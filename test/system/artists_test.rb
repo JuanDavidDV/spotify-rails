@@ -5,7 +5,7 @@ class ArtistsTest < ApplicationSystemTestCase
     @artist = artists(:one)
   end
 
-  test "visiting the artist dashboard" do
+  test "should visit the artist dashboard" do
     visit new_artist_session_url
     fill_in "Email", with: @artist.email
     fill_in "Password", with: "Password"
