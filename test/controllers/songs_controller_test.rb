@@ -80,6 +80,6 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
       delete song_url(@song)
     end
 
-    assert_redirected_to songs_url
+    assert_redirected_to artist_songs_url
   end
 end
