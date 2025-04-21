@@ -5,15 +5,6 @@ class ArtistsTest < ApplicationSystemTestCase
     @artist = artists(:one)
   end
 
-  test "should visit the artist dashboard" do
-    visit new_artist_session_url
-    fill_in "Email", with: @artist.email
-    fill_in "Password", with: "Password"
-    click_on "Log in"
-
-    assert_selector "h1", text: "Welcome to the Artist Dashboard"
-  end
-
   test "should create artist" do
     visit new_artist_registration_url
     fill_in "Stage name", with: "Test Artist"
@@ -27,6 +18,15 @@ class ArtistsTest < ApplicationSystemTestCase
     using_wait_time(10) do
       assert_selector "h1", text: "Welcome to the Artist Dashboard"
     end
+  end
+
+  test "should visit the artist dashboard" do
+    visit new_artist_session_url
+    fill_in "Email", with: @artist.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
+
+    assert_selector "h1", text: "Welcome to the Artist Dashboard"
   end
 
   test "should update Artist information" do
