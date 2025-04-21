@@ -447,7 +447,7 @@ DEPENDENCIES
   aws-sdk-s3
   bootsnap
   brakeman
-  capybara
+  capybara (~> 3.38)
   debug
   devise (~> 4.9)
   image_processing (~> 1.2)
@@ -460,7 +460,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.0.rc2)
   rubocop-rails-omakase
-  selenium-webdriver
+  selenium-webdriver (~> 4.0)
   solid_cable
   solid_cache
   solid_queue

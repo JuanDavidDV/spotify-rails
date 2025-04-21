@@ -4,7 +4,6 @@ require "rails/test_help"
 require "webmock/minitest"
 include WebMock::API
 
-
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers

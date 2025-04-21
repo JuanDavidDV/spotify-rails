@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class SongsTest < ApplicationSystemTestCase
   setup do
-    @artist = artist(:one)
+    @artist = artists(:one)
     @song = songs(:one)
   end
 
@@ -11,17 +11,17 @@ class SongsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Songs"
   end
 
-  test "should create song" do
-    visit new_artist_session_path 
-    visit songs_url
-    click_on "New song"
+  test "should edit a song title" do
+    visit new_artist_session_url
 
-    fill_in "Artist", with: @song.artist_id
-    fill_in "Title", with: @song.title
-    click_on "Create Song"
+    fill_in "Email", with: @artist.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
 
-    assert_text "Song was successfully created"
-    click_on "Back"
+    click_on "View your songs"
+
+    click_on "Show this song", match: :first
+    assert_text "Title"
   end
 
   test "should update Song" do
