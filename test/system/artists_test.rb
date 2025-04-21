@@ -29,14 +29,22 @@ class ArtistsTest < ApplicationSystemTestCase
     end
   end
 
-  test "should update Artist" do
-    visit artist_url(@artist)
-    click_on "Edit this artist", match: :first
+  test "should update Artist information" do
+    visit new_artist_session_url
+    fill_in "Email", with: @artist.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
 
-    click_on "Update Artist"
+    click_on "Edit your account"
 
-    assert_text "Artist was successfully updated"
-    click_on "Back"
+    fill_in "Stage name", with: "Test Artist"
+    fill_in "Email", with: "testartist@email.com"
+    fill_in "Password", with: "Test Password"
+    fill_in "Password confirmation", with: "Test Password"
+    fill_in "Current password", with: "Password"
+    click_on "Update"
+
+    assert_text "Your account has been updated successfully."
   end
 
   test "should destroy Artist" do
