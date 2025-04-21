@@ -5,15 +5,6 @@ class UsersTest < ApplicationSystemTestCase
     @user = users(:one)
   end
 
-  test "should visit the songs page after sign in" do
-    visit new_user_session_url
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: "Password"
-    click_on "Log in"
-
-    assert_text "Signed in successfully."
-  end
-
   test "should create a user" do
     visit new_user_session_url
     click_on "New here? Create an account now"
@@ -25,4 +16,15 @@ class UsersTest < ApplicationSystemTestCase
 
     assert_text "Welcome! You have signed up successfully."
   end
+
+  test "should visit the songs page after sign in" do
+    visit new_user_session_url
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
+
+    assert_text "Signed in successfully."
+  end
+
+  
 end

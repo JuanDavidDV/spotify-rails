@@ -20,7 +20,7 @@ class ArtistsTest < ApplicationSystemTestCase
     end
   end
 
-  test "should visit the artist dashboard" do
+  test "should visit the artist dashboard after sign in" do
     visit new_artist_session_url
     fill_in "Email", with: @artist.email
     fill_in "Password", with: "Password"
