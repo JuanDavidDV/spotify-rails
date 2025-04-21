@@ -1,15 +1,17 @@
 require "application_system_test_case"
-require "webmock/minitest"
 
 class ArtistsTest < ApplicationSystemTestCase
   setup do
     @artist = artists(:one)
   end
 
-  test "visiting the index" do
-    sign_in @artist
-    visit authenticated_artist_root_url
-    assert_selector "h1", text: "Artists"
+  test "visiting the artist dashboard" do
+    visit new_artist_session_path
+    fill_in "Email", with: @artist.email
+    fill_in "Password", with: "Password"
+    click_on "Log in"
+
+    assert_selector "h1", text: "Welcome to the Artist Dashboard"
   end
 
   test "should create artist" do

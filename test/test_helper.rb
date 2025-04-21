@@ -2,6 +2,8 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "webmock/minitest"
+include WebMock::API
+
 
 module ActiveSupport
   class TestCase
@@ -17,3 +19,17 @@ module ActiveSupport
     include Devise::Test::IntegrationHelpers
   end
 end
+
+# This section is created to mainly for system tests:
+WebMock.disable_net_connect!(allow_localhost: true)
+
+Stripe.api_key = "sk_test_1234567890fake"
+
+# Stub ALL requests to Stripe API
+stub_request(:any, /api.stripe.com/).to_return(
+  status: 200,
+  body: {
+    client_secret: "test123"
+}.to_json, # dummy empty JSON response
+  headers: { "Content-Type" => "application/json" }
+)
