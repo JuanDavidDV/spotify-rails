@@ -16,6 +16,17 @@ class ArtistsTest < ApplicationSystemTestCase
 
   test "should create artist" do
     visit new_artist_registration_url
+    fill_in "Stage name", with: "Test Artist"
+    fill_in "Email", with: "testartist@email.com"
+    fill_in "Password", with: "Password"
+    fill_in "Password confirmation", with: "Password"
+
+    click_on "Sign up"
+
+    # Waits to allow loading the new artist dashboard
+    using_wait_time(10) do
+      assert_selector "h1", text: "Welcome to the Artist Dashboard"
+    end
   end
 
   test "should update Artist" do
