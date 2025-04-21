@@ -23,7 +23,6 @@ class SongsTest < ApplicationSystemTestCase
   
     fill_in "Title", with: "Song Test"
   
-    # Use absolute paths with forward slashes
     image_path = File.expand_path("test/fixtures/files/images/lion.webp")
     audio_path = File.expand_path("test/fixtures/files/audios/tiger.mp3")
   
@@ -34,7 +33,7 @@ class SongsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Showing song"
   end
 
-  test "should edit a song title" do
+  test "should update a song" do
     visit new_artist_session_url
 
     fill_in "Email", with: @artist.email
@@ -45,6 +44,13 @@ class SongsTest < ApplicationSystemTestCase
     click_on "Show this song", match: :first
     click_on "Edit this song"
     fill_in "Title", with: "New Test"
+
+    image_path = File.expand_path("test/fixtures/files/images/universe.gif")
+    audio_path = File.expand_path("test/fixtures/files/audios/universal.mp3")
+
+    attach_file "Image", image_path
+    attach_file "Audio file", audio_path
+
     click_on "Update Song"
     assert_selector "h1", text: "Showing song"
   end
