@@ -8,7 +8,7 @@ class SongsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit songs_url
-    assert_selector "h1", text: "Songs"
+    assert_selector "[data-music-target='play']"
   end
 
   test "should edit a song title" do
