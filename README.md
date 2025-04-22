@@ -5,11 +5,11 @@ This application was created and developed on a Windows computer. If you are run
 Spotify-Rails is a streaming music platform enabling artist payments via Stripe.
 
 This app uses:
-•	Built Cron Jobs for task scheduling and process automation for daily artist payouts.
-•	Tested application with Minitest and Capybara, ensuring code accuracy and simulating user interactions.
-•	Integrated Stimulus for dynamic frontend interactions.
-•	Utilized AWS S3 for scalable audio and image storage.
-•	Deployed and managed the application on Heroku using Ubuntu and the Heroku CLI.
+*	Built Cron Jobs for task scheduling and process automation for daily artist payouts.
+* Tested application with Minitest and Capybara, ensuring code accuracy and simulating user interactions.
+*	Integrated Stimulus for dynamic frontend interactions.
+*	Utilized AWS S3 for scalable audio and image storage.
+*	Deployed and managed the application on Heroku using Ubuntu and the Heroku CLI.
 
 ## How to run this project?
 * If you are using a Windows computer, please open Ubuntu and run the following command to initialize the PostgreSQL database: `sudo service postgresql start`
