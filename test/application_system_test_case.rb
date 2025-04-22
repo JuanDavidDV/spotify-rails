@@ -14,6 +14,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1400,1400")
+    options.add_argument("--user-data-dir=#{Dir.mktmpdir}")
 
     Capybara::Selenium::Driver.new(
       app,
@@ -31,6 +32,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1400,1400")
+    options.add_argument("--user-data-dir=#{Dir.mktmpdir}")
 
     Capybara::Selenium::Driver.new(
       app,
