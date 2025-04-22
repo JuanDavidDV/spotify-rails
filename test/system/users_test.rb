@@ -50,7 +50,7 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Your account has been updated successfully."
   end
 
-  test "Should destroy User" do
+  test "Should destroy user" do
     @user.streams.destroy_all
 
     log_in_user
@@ -63,5 +63,14 @@ class UsersTest < ApplicationSystemTestCase
     end
 
     assert_text "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+  end
+
+  test "should sign out user" do
+    log_in_user
+
+    find("a[data-action='dropdown#toggle']").click
+    click_on "Sign Out"
+
+    assert_text "Signed out successfully."
   end
 end
