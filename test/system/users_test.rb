@@ -43,6 +43,16 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Password confirmation doesn't match Password"
   end
 
+  test "should have a password with more than 6 characters" do
+    visit new_user_registration_url
+    fill_in "Email", with: "testuser@email.com"
+    fill_in "Password", with: "Pass"
+    fill_in "Password confirmation", with: "Pass"
+    click_on "Sign up"
+
+    assert_text "Password is too short (minimum is 6 characters)"
+  end
+
   test "should visit the songs page after sign in" do
     log_in_user
     assert_text "Signed in successfully."

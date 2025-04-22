@@ -66,10 +66,20 @@ class ArtistsTest < ApplicationSystemTestCase
     fill_in "Email", with: "testartist@email.com"
     fill_in "Password", with: "Password12"
     fill_in "Password confirmation", with: "Password"
-
     click_on "Sign up"
 
     assert_text "Password confirmation doesn't match Password"
+  end
+
+  test "should have a password with more than 6 characters" do
+    visit new_artist_registration_url
+    fill_in "Stage name", with: "Test Stage Name"
+    fill_in "Email", with: "testartist@email.com"
+    fill_in "Password", with: "Pass"
+    fill_in "Password confirmation", with: "Pass"
+    click_on "Sign up"
+
+    assert_text "Password is too short (minimum is 6 characters)"
   end
 
   test "should visit the artist dashboard after sign in" do
