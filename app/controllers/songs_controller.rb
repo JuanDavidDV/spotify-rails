@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   before_action :set_song, only: %i[ show edit update destroy ]
+
   def index
     @songs = Song.all.order(created_at: :desc)
   end
@@ -64,13 +65,14 @@ class SongsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = current_artist.songs.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def song_params
-      params.expect(song: [ :title, :image, :audio_file, :artist_id ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_song
+    @song = current_artist.songs.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def song_params
+    params.expect(song: [ :title, :image, :audio_file, :artist_id ])
+  end
 end
