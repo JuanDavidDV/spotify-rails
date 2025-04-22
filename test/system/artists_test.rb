@@ -60,6 +60,18 @@ class ArtistsTest < ApplicationSystemTestCase
     end
   end
 
+  test "should match Password and Password Confirmation before creating a user" do
+    visit new_artist_registration_url
+    fill_in "Stage name", with: "Test Stage Name"
+    fill_in "Email", with: "testartist@email.com"
+    fill_in "Password", with: "Password12"
+    fill_in "Password confirmation", with: "Password"
+
+    click_on "Sign up"
+
+    assert_text "Password confirmation doesn't match Password"
+  end
+
   test "should visit the artist dashboard after sign in" do
     log_in_artist
 
